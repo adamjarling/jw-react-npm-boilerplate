@@ -5,7 +5,7 @@ const propTypes = {
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     styles: PropTypes.object
-}
+};
 
 const defaultProps = {
     styles: {
@@ -18,29 +18,22 @@ const defaultProps = {
             border: '1px solid red'
         }
     }
-}
+};
 
-class BoilerplateComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
+const BoilerplateComponent = props => {
+    const styles = props.styles || {};
 
-    handleChange(e) {
-        this.props.onChange(e.target.value);
-    }
-    
-    render() {
-        const styles = this.props.styles || {};
+    const handleChange = e => {
+        props.onChange(e.target.value);
+    };
 
-        return (
-            <div>
-                <label style={styles.label}>{this.props.label}</label>
-                <input type="text" style={styles.input} onChange={this.handleChange} />
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <label style={styles.label}>{props.label}</label>
+            <input type="text" style={styles.input} onChange={handleChange} />
+        </div>
+    );
+};
 
 BoilerplateComponent.propTypes = propTypes;
 BoilerplateComponent.defaultProps = defaultProps;
